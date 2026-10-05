@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aadidev TS | IMCA Student Portfolio</title>
+  <meta name="description" content="Portfolio of Aadidev TS, an IMCA student at Rajagiri College of Social Sciences.">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    :root {
+      --bg: #08111f;
+      --bg2: #0d1b2e;
+      --card: rgba(255,255,255,0.06);
+      --text: #f4f7fb;
+      --muted: #aab7c8;
+      --accent: #55d6ff;
+      --accent2: #7c5cff;
+      --border: rgba(255,255,255,0.12);
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at 80% 10%, rgba(124,92,255,.18), transparent 30%),
+        radial-gradient(circle at 10% 30%, rgba(85,214,255,.12), transparent 25%),
+        var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      backdrop-filter: blur(14px);
+      background: rgba(8,17,31,.75);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-inner {
+      max-width: 1100px;
+      margin: auto;
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--accent);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 24px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text);
+      text-decoration: none;
+      font-size: .95rem;
+      transition: .25s;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent);
+    }
+
+    .menu {
+      display: none;
+      border: 0;
+      background: none;
+      color: white;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    section {
+      max-width: 1100px;
+      margin: auto;
+      padding: 100px 24px;
+    }
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding-top: 130px;
+    }
+
+    .hero-content {
+      max-width: 850px;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 8px 15px;
+      border: 1px solid var(--border);
+      background: var(--card);
+      border-radius: 999px;
+      color: var(--accent);
+      margin-bottom: 20px;
+      font-size: .9rem;
+    }
+
+    h1 {
+      font-size: clamp(3rem, 8vw, 6.5rem);
+      line-height: .95;
+      letter-spacing: -4px;
+      margin-bottom: 24px;
+    }
+
+    .gradient {
+      background: linear-gradient(90deg, var(--accent), #fff, #9c8cff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero p {
+      color: var(--muted);
+      font-size: 1.15rem;
+      max-width: 650px;
+      margin: auto;
+    }
+
+    .buttons {
+      margin-top: 30px;
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 13px 22px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 700;
+      transition: transform .2s, opacity .2s;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      opacity: .9;
+    }
+
+    .primary {
+      color: #06101b;
+      background: var(--accent);
+    }
+
+    .secondary {
+      color: white;
+      border: 1px solid var(--border);
+      background: var(--card);
+    }
+
+    .section-title {
+      font-size: 2.4rem;
+      margin-bottom: 12px;
+    }
+
+    .section-subtitle {
+      color: var(--muted);
+      margin-bottom: 35px;
+    }
+
+    .about-grid,
+    .education-grid,
+    .cards,
+    .projects {
+      display: grid;
+      gap: 20px;
+    }
+
+    .about-grid {
+      grid-template-columns: 1.2fr .8fr;
+    }
+
+    .card {
+      padding: 28px;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      background: var(--card);
+      backdrop-filter: blur(10px);
+    }
+
+    .card h3 {
+      margin-bottom: 10px;
+      color: var(--accent);
+    }
+
+    .card p {
+      color: var(--muted);
+    }
+
+    .info-list {
+      list-style: none;
+    }
+
+    .info-list li {
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .info-list li:last-child {
+      border-bottom: 0;
+    }
+
+    .education-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .timeline {
+      position: relative;
+      padding-left: 25px;
+      border-left: 2px solid var(--accent2);
+    }
+
+    .timeline-item {
+      margin-bottom: 28px;
+    }
+
+    .timeline-item span {
+      color: var(--accent);
+      font-size: .9rem;
+      font-weight: bold;
+    }
+
+    .cards {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    .skill {
+      text-align: center;
+    }
+
+    .skill .icon {
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+
+    .projects {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .project-number {
+      font-size: .85rem;
+      color: var(--accent);
+      font-weight: bold;
+    }
+
+    .goal {
+      text-align: center;
+      padding: 45px 25px;
+    }
+
+    .goal h3 {
+      font-size: 2rem;
+      color: white;
+      margin-bottom: 12px;
+    }
+
+    .contact-box {
+      text-align: center;
+      max-width: 700px;
+      margin: auto;
+    }
+
+    .email {
+      display: inline-block;
+      margin-top: 20px;
+      color: var(--accent);
+      font-size: 1.1rem;
+      text-decoration: none;
+      word-break: break-word;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px 20px;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+    }
+
+    @media (max-width: 800px) {
+      .menu {
+        display: block;
+      }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 62px;
+        right: 20px;
+        left: 20px;
+        flex-direction: column;
+        padding: 20px;
+        background: #0d1b2e;
+        border: 1px solid var(--border);
+        border-radius: 14px;
+      }
+
+      .nav-links.show {
+        display: flex;
+      }
+
+      .about-grid,
+      .education-grid,
+      .projects {
+        grid-template-columns: 1fr;
+      }
+
+      .cards {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 500px) {
+      section {
+        padding: 80px 18px;
+      }
+
+      h1 {
+        font-size: 3.5rem;
+        letter-spacing: -2px;
+      }
+
+      .cards {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav>
+    <div class="nav-inner">
+      <div class="logo">Aadidev TS</div>
+
+      <button class="menu" id="menuBtn" aria-label="Open menu">☰</button>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#interests">Interests</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main>
+
+    <section class="hero" id="home">
+      <div class="hero-content">
+        <span class="tag">IMCA Student • Rajagiri College of Social Sciences</span>
+        <h1>Hi, I'm <span class="gradient">Aadidev.</span></h1>
+        <p>
+          An enthusiastic student exploring technology, programming and personal growth,
+          while building the skills needed for a successful career in the tech world.
+        </p>
+
+        <div class="buttons">
+          <a class="btn primary" href="#about">Explore My Portfolio</a>
+          <a class="btn secondary" href="#contact">Contact Me</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <h2 class="section-title">About Me</h2>
+      <p class="section-subtitle">A little about who I am.</p>
+
+      <div class="about-grid">
+        <div class="card">
+          <h3>Who I Am</h3>
+          <p>
+            I am Aadidev TS, an IMCA student at Rajagiri College of Social Sciences.
+            I am interested in technology, programming, games and movies. I enjoy
+            learning new things, working with others and improving myself step by step.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Quick Facts</h3>
+          <ul class="info-list">
+            <li><strong>Course:</strong> IMCA</li>
+            <li><strong>College:</strong> Rajagiri College of Social Sciences</li>
+            <li><strong>School:</strong> Global Indian School</li>
+            <li><strong>Graduation:</strong> 2026</li>
+            <li><strong>Focus:</strong> Technology & Personal Growth</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="education">
+      <h2 class="section-title">Education</h2>
+      <p class="section-subtitle">My academic journey.</p>
+
+      <div class="education-grid">
+        <div class="card timeline">
+          <div class="timeline-item">
+            <span>2026</span>
+            <h3>Global Indian School</h3>
+            <p>Completed school education.</p>
+          </div>
+
+          <div class="timeline-item">
+            <span>2026 – 2031</span>
+            <h3>Rajagiri College of Social Sciences</h3>
+            <p>Integrated Master of Computer Applications (IMCA).</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Academic Interests</h3>
+          <p>
+            I am developing my foundation in computer applications and programming,
+            with a focus on learning practical technology skills that can support
+            my future career.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <h2 class="section-title">Skills</h2>
+      <p class="section-subtitle">Strengths and soft skills I am developing.</p>
+
+      <div class="cards">
+        <div class="card skill">
+          <div class="icon">💬</div>
+          <h3>Communication</h3>
+          <p>Expressing ideas clearly and working effectively with others.</p>
+        </div>
+
+        <div class="card skill">
+          <div class="icon">🤝</div>
+          <h3>Teamwork</h3>
+          <p>Collaborating with people and contributing to team goals.</p>
+        </div>
+
+        <div class="card skill">
+          <div class="icon">🔄</div>
+          <h3>Adaptability</h3>
+          <p>Learning to adjust to new situations and challenges.</p>
+        </div>
+
+        <div class="card skill">
+          <div class="icon">💡</div>
+          <h3>Creativity</h3>
+          <p>Exploring ideas and finding new ways to approach problems.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="interests">
+      <h2 class="section-title">Interests & Hobbies</h2>
+      <p class="section-subtitle">The things I enjoy outside academics.</p>
+
+      <div class="cards">
+        <div class="card skill">
+          <div class="icon">🎬</div>
+          <h3>Movies</h3>
+          <p>Exploring different stories, genres and filmmaking styles.</p>
+        </div>
+
+        <div class="card skill">
+          <div class="icon">🎮</div>
+          <h3>Gaming</h3>
+          <p>Enjoying games and exploring interactive experiences.</p>
+        </div>
+
+        <div class="card skill">
+          <div class="icon">🎵</div>
+          <h3>Music</h3>
+          <p>Listening to music and discovering new songs and artists.</p>
+        </div>
+
+        <div class="card skill">
+          <div class="icon">⚽</div>
+          <h3>Sports</h3>
+          <p>Enjoying outdoor activities and staying active.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="goal">
+      <div class="card goal">
+        <h3>My Career Goal</h3>
+        <p>
+          My ambition is to build a strong career in the technology field,
+          continuously improve my skills and eventually secure a successful and
+          stable professional future.
+        </p>
+      </div>
+    </section>
+
+    <section id="projects">
+      <h2 class="section-title">Projects</h2>
+      <p class="section-subtitle">Things I am learning and building.</p>
+
+      <div class="projects">
+        <div class="card">
+          <span class="project-number">01</span>
+          <h3>Personal Portfolio</h3>
+          <p>A responsive personal website created using HTML, CSS and JavaScript.</p>
+        </div>
+
+        <div class="card">
+          <span class="project-number">02</span>
+          <h3>C Programming</h3>
+          <p>Beginner programming exercises covering conditions, loops and calculations.</p>
+        </div>
+
+        <div class="card">
+          <span class="project-number">03</span>
+          <h3>Future Projects</h3>
+          <p>This section will grow as I create more projects during my IMCA journey.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="card contact-box">
+        <h2 class="section-title">Let's Connect</h2>
+        <p class="section-subtitle">
+          Interested in getting in touch? Feel free to reach out.
+        </p>
+
+        <a class="email" href="mailto:imca2601@rajagiri.edu">
+          imca2601@rajagiri.edu
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>© <span id="year"></span> Aadidev TS. All rights reserved.</p>
+  </footer>
+
+  <script>
+    const menuBtn = document.getElementById("menuBtn");
+    const navLinks = document.getElementById("navLinks");
+
+    menuBtn.addEventListener("click", () => {
+      navLinks.classList.toggle("show");
+    });
+
+    document.querySelectorAll(".nav-links a").forEach(link => {
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("show");
+      });
+    });
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+
+</body>
+</html>
